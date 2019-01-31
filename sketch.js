@@ -6,19 +6,28 @@ var counter=0;
 var w=0;
 var easing = 0.05;
 
+let c1, c2;
+
 
 function setup() {
+
   createCanvas(500, 500);
 
  callAPI();
 
   callMotion();
 
+
+
+
 }
 
 
 
 function draw() {
+
+  c1 = color(w, w, 0);
+c2 = color(0, 102, 153);
 
 background(255, 255, 255);
   fill(255,0,0);
@@ -34,6 +43,9 @@ background(255, 255, 255);
    w += dw * easing;
   ellipse(width / 2, height / 2, w, w);
   //console.log('w:+'+w);
+
+
+  setGradient(0, 0, width, height, c1, c2);
 
 }
 
@@ -73,4 +85,16 @@ function callMotion() {
 //  console.log(counter);
 
 
+}
+
+
+function setGradient(x, y, w, h, c1, c2) {
+  noFill();
+
+    for (let i = y; i <= y + h; i++) {
+      let inter = map(i, y, y + h, 0, 1);
+      let c = lerpColor(c1, c2, inter);
+      stroke(c);
+      line(x, i, x + w, i);
+    }
 }
