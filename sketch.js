@@ -6,6 +6,7 @@ var counter=0;
 var w=70;
 var easing = 0.05;
 var g2;
+var v = 0;
 
 var mic;
 
@@ -37,6 +38,14 @@ micLevel = mic.getLevel();
 
 console.log(micLevel);
 
+
+if (v>0.2){
+
+ v=  v-.01;
+} else {
+v=   v+.01;}
+
+
 let s1 = map(micLevel, 0, .4, 1.5, .5);
 
 let t1 = map(reading, 70, 99, 128, 255);
@@ -48,7 +57,7 @@ background(255, 255, 255);
   fill(255,0,0);
   noStroke();
 
-    setGradient(0, 0, width, height, c1, c2, s1);
+    setGradient(0, 0, width, height, c1, c2, (s1+v));
 
   text(reading, 20, 20);
 
