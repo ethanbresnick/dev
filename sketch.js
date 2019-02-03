@@ -5,6 +5,7 @@ var conf = 'none';
 var counter=0;
 var w=70;
 var easing = 0.05;
+var g2;
 
 var mic;
 
@@ -36,26 +37,28 @@ micLevel = mic.getLevel();
 
 console.log(micLevel);
 
-let s1 = map(micLevel, 0, 1, 0, 255);
+let s1 = map(micLevel, 0, 1, .5, 1.5);
 
-let t1 = map(reading, 75, 99, 170, 221);
+let t1 = map(reading, 70, 99, 22, 221);
 
-c1 = color(255,128, t1);
-c2 = color(0, 102, ( h));
+c1 = color(255,128, 170);
+c2 = color(0, g2, ( 55));
 
 background(255, 255, 255);
   fill(255,0,0);
   noStroke();
 
-    setGradient(0, 0, width, height, c1, c2);
+    setGradient(0, 0, width, height, c1, c2, s1);
 
   text(reading, 20, 20);
 
     text(conf, 20, 100);
 
     if (conf == true) {
-
+      g2 = 102;
     } else {
+
+      g2 = 0;
 
     }
 
@@ -100,11 +103,11 @@ function callMotion() {
 }
 
 
-function setGradient(x, y, w, h, c1, c2) {
+function setGradient(x, y, w, h, c1, c2, s1) {
   noFill();
 
     for (let i = y; i <= y + h; i++) {
-      let inter = map(i, y, y + h, 0, 1);
+      let inter = map(i, y, y + h, 0, s1);
       let c = lerpColor(c1, c2, inter);
       stroke(c);
       line(x, i, x + w, i);
