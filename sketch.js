@@ -37,9 +37,7 @@ micLevel = mic.getLevel();
 
 console.log(micLevel);
 
-let s1 = micLevel;
-
-//map(micLevel, 0, 1, .5, 1.5);
+let s1 = map(micLevel, 0, 1, .5, 1.5);
 
 let t1 = map(reading, 70, 99, 22, 221);
 
