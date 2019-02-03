@@ -37,11 +37,11 @@ micLevel = mic.getLevel();
 
 console.log(micLevel);
 
-let s1 = map(micLevel, 0, 1, .5, 1.5);
+let s1 = map(micLevel, 0, .4, 1.5, .5);
 
-let t1 = map(reading, 70, 99, 22, 221);
+let t1 = map(reading, 70, 99, 128, 255);
 
-c1 = color(255,128, 170);
+c1 = color(255,t1, 170);
 c2 = color(0, g2, ( 55));
 
 background(255, 255, 255);
