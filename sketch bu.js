@@ -34,30 +34,40 @@ function draw() {
 
 micLevel = mic.getLevel();
 
-console.log(micLevel);
-
-let s1 = map(micLevel, 0, 1, 0, 255);
+let h = map(micLevel, 0, 1, 0, 200);
 
 let t1 = map(reading, 75, 99, 170, 221);
 
-c1 = color(255,128, t1);
+  c1 = color(255,128, t1);
 c2 = color(0, 102, ( h));
 
 background(255, 255, 255);
   fill(255,0,0);
   noStroke();
 
-    setGradient(0, 0, width, height, c1, c2);
+    setGradient(0, 0, width, height, c1, c2, f);
 
   text(reading, 20, 20);
 
     text(conf, 20, 100);
 
     if (conf == true) {
-
+      f = 1;
     } else {
-
+      f= 0.2;
     }
+
+    console.log(h);
+
+
+
+  //draw circle with easing.
+   var targetW = reading;
+   var dw = targetW - w;
+   //w += dw * easing;
+  ellipse(width / 2, height / 2, w, w);
+  //console.log('w:+'+w);
+
 
 }
 
@@ -100,7 +110,7 @@ function callMotion() {
 }
 
 
-function setGradient(x, y, w, h, c1, c2) {
+function setGradient(x, y, w, h, c1, c2,f) {
   noFill();
 
     for (let i = y; i <= y + h; i++) {
