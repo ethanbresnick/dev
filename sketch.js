@@ -35,7 +35,7 @@ function draw() {
 
 micLevel = mic.getLevel();
 
-console.log(micLevel);
+//console.log(micLevel);
 
 let s1 = map(micLevel, 0, 1, .5, 1.5);
 
