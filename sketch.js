@@ -2,11 +2,12 @@ var data;
 var state;
 var reading = 70;
 var conf = 'none';
-var counter=0;
-var w=70;
+var counter = 0;
+var w = 70;
 var easing = 0.05;
 var g2;
 var v = 0;
+var goingUp = true;
 
 var mic;
 
@@ -19,13 +20,13 @@ function setup() {
 
   createCanvas(windowWidth, windowHeight);
 
- callAPI();
+  callAPI();
 
   callMotion();
 
 
   mic = new p5.AudioIn()
-   mic.start();
+  mic.start();
 
 }
 
@@ -34,42 +35,45 @@ function setup() {
 
 function draw() {
 
-micLevel = mic.getLevel();
+  micLevel = mic.getLevel();
 
-console.log(micLevel);
+  console.log(micLevel);
+
+  if(goingUp) {
+    v += (.01);
+    if(v >= .1)
+      goingUp = false;
+  } else {
+    v -= (.01);
+    if(v <= -.1)
+      goingUp = true;
+  }
 
 
-if (v>0.2){
+  let s1 = map(micLevel, 0, .4, 1.5, .5);
 
- v=  v-.01;
-} else {
-v=   v+.01;}
+  let t1 = map(reading, 70, 99, 128, 255);
 
+  c1 = color(255, t1, 170);
+  c2 = color(93, 64, 55);
 
-let s1 = map(micLevel, 0, .4, 1.5, .5);
-
-let t1 = map(reading, 70, 99, 128, 255);
-
-c1 = color(255,t1, 170);
-c2 = color(0, g2, ( 55));
-
-background(255, 255, 255);
-  fill(255,0,0);
+  background(255, 255, 255);
+  fill(255, 0, 0);
   noStroke();
 
-    setGradient(0, 0, width, height, c1, c2, (s1+v));
+  setGradient(0, 0, width, height, c1, c2, (s1 + v*g2));
 
   text(reading, 20, 20);
 
-    text(conf, 20, 100);
+  text(conf, 20, 100);
 
-    if (conf == true) {
-      g2 = 102;
-    } else {
+  if (conf == true) {
+    g2 = 2;
+  } else {
 
-      g2 = 0;
+    g2 = 1;
 
-    }
+  }
 
 }
 
@@ -80,7 +84,7 @@ function parseData(data) {
   reading = data.result;
   print("reading:" + reading);
   //call API every 1000 milliseconds
-  setTimeout(callAPI(),1000);
+  setTimeout(callAPI(), 1000);
 
 }
 
@@ -90,7 +94,7 @@ function parseState(state) {
   conf = state.result;
   print("conf:" + conf);
 
-  setTimeout(callMotion(),1000);
+  setTimeout(callMotion(), 1000);
 
 }
 
@@ -98,7 +102,7 @@ function callAPI() {
   var url = 'https://api.particle.io/v1/devices/1f0039000347363339343638/temp?access_token=9dd3428620eeafe845da5a1cf0bea2a5b15ba5c1';
   data = loadJSON(url, parseData);
   counter++;
-//  console.log(counter);
+  //  console.log(counter);
 
 }
 
@@ -106,7 +110,7 @@ function callMotion() {
 
   var link = 'https://api.particle.io/v1/devices/1f0039000347363339343638/stuff?access_token=9dd3428620eeafe845da5a1cf0bea2a5b15ba5c1';
   state = loadJSON(link, parseState);
-//  console.log(counter);
+  //  console.log(counter);
 
 
 }
@@ -115,10 +119,10 @@ function callMotion() {
 function setGradient(x, y, w, h, c1, c2, s1) {
   noFill();
 
-    for (let i = y; i <= y + h; i++) {
-      let inter = map(i, y, y + h, 0, s1);
-      let c = lerpColor(c1, c2, inter);
-      stroke(c);
-      line(x, i, x + w, i);
-    }
+  for (let i = y; i <= y + h; i++) {
+    let inter = map(i, y, y + h, 0, s1);
+    let c = lerpColor(c1, c2, inter);
+    stroke(c);
+    line(x, i, x + w, i);
+  }
 }
