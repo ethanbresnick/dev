@@ -9,6 +9,8 @@ var g2;
 var v = 0;
 var goingUp = true;
 
+let value = 35;
+
 var mic;
 
 var f;
@@ -54,7 +56,7 @@ function draw() {
 
   let t1 = map(reading, 70, 99, 128, 255);
 
-  c1 = color(255, t1, 170);
+  c1 = color(value, t1, 170);
   c2 = color(93, 64, 55);
 
   background(255, 255, 255);
@@ -126,3 +128,11 @@ function setGradient(x, y, w, h, c1, c2, s1) {
     line(x, i, x + w, i);
   }
 }
+
+function keyPressed() {
+
+  if (value === 35)
+
+  { value = 255; }
+
+  else { value = 35; } }
