@@ -43,11 +43,11 @@ function draw() {
   console.log(micLevel);
 
   if(goingUp) {
-    v += delta;
+    v += delta*g2;
     if(v >= PI/2)
       goingUp = false;
   } else {
-    v -= delta;
+    v -= delta*g2;
     if(v <= -PI/2)
       goingUp = true;
   }
@@ -64,7 +64,7 @@ function draw() {
   fill(255, 0, 0);
   noStroke();
 
-  setGradient(0, 0, width, height, c1, c2, (s1 + sin(v)*0.1*g2)*1.5);
+  setGradient(0, 0, width, height, c1, c2, (s1 + sin(v)*0.1)*1.5);
 
   //text(reading, 20, 20);
 
