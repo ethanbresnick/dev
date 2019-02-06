@@ -63,9 +63,9 @@ function draw() {
 
   setGradient(0, 0, width, height, c1, c2, (s1 + v*g2));
 
-  text(reading, 20, 20);
+  //text(reading, 20, 20);
 
-  text(conf, 20, 100);
+  //text(conf, 20, 100);
 
   if (conf == true) {
     g2 = 2;
