@@ -127,9 +127,9 @@ function setGradient(x, y, w, h, c1, c2, s1) {
 }
 
 function keyPressed() {
-
-  if (value === 35)
-
-  { value = 255; }
-
-  else { value = 35; } }
+  if (value === 35) {
+    value = 255;
+  } else {
+    value = 35;
+  }
+}
