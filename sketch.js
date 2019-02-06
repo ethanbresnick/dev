@@ -43,11 +43,11 @@ function draw() {
   console.log(micLevel);
 
   if(goingUp) {
-    v += delta*g2;
+    v += delta;
     if(v >= PI/2)
       goingUp = false;
   } else {
-    v -= delta*g2;
+    v -= delta;
     if(v <= -PI/2)
       goingUp = true;
   }
@@ -64,7 +64,7 @@ function draw() {
   fill(255, 0, 0);
   noStroke();
 
-  setGradient(0, 0, width, height, c1, c2, (s1 + sin(v)*0.1)*1.5);
+  setGradient(0, 0, width, height, c1, c2, (s1 + sin(v)*0.1*g2));
 
   //text(reading, 20, 20);
 
@@ -120,7 +120,7 @@ function callMotion() {
 function setGradient(x, y, w, h, c1, c2, s1) {
   noFill();
   for (let i = y - h; i <= y + h; i++) {
-    let inter = map(i, y, y + h, 0, s1);
+    let inter = map(i, y - h, y + h, 0, s1);
     let c = lerpColor(c1, c2, inter);
     stroke(c);
     line(x, i, x + w, i + h);
