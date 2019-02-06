@@ -5,10 +5,9 @@ var conf = 'none';
 var counter = 0;
 var w = 70;
 var easing = 0.05;
-var g2;
 var v = 0;
 var goingUp = true;
-var delta = 0.15
+var delta = 0.15;
 
 let value = 35;
 
@@ -64,16 +63,16 @@ function draw() {
   fill(255, 0, 0);
   noStroke();
 
-  setGradient(0, 0, width, height, c1, c2, (s1 + sin(v)*0.1*g2));
+  setGradient(0, 0, width, height, c1, c2, (s1 + sin(v)*0.1));
 
   //text(reading, 20, 20);
 
   //text(conf, 20, 100);
 
   if (conf == true) {
-    g2 = 2;
+    delta = .3;
   } else {
-    g2 = 1;
+    delta = .15;
   }
 
 }
