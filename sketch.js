@@ -57,7 +57,7 @@ function draw() {
   let t1 = map(reading, 70, 99, 128, 255);
 
   c1 = color(value, t1, 170);
-  c2 = color(93, 64, 55);
+  c2 = color(43, 48, 68);
 
   background(255, 255, 255);
   fill(255, 0, 0);
