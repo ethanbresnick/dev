@@ -3,16 +3,16 @@ var c;
 
 function preload()
 {
-  //  img = loadImage("colors.jpg");
+ img = loadImage("http://dev.ethanbresnick.com/data/colors.jpg");
 }
 
 function setup() {
-    createCanvas(640, 425);
+    createCanvas(width, height);
     c = color(255,0,0);
 }
 
 function draw() {
-  //  image(img, 0, 0);
+  image(img, 0, 0);
 
     strokeWeight(3);
     stroke(255);
