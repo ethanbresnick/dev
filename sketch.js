@@ -3,16 +3,16 @@ var c;
 
 function preload()
 {
-    img = loadImage("colors.jpg");
+  //  img = loadImage("colors.jpg");
 }
 
 function setup() {
     createCanvas(640, 425);
-    c = color(255);
+    c = color(255,0,0);
 }
 
 function draw() {
-    image(img, 0, 0);
+  //  image(img, 0, 0);
 
     strokeWeight(3);
     stroke(255);
