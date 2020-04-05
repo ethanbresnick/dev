@@ -1,8 +1,10 @@
 var img;
 var c;
 
-// Classifier Variable
-let classifier;
+<script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
+
+  // Classifier Variable
+  let classifier;
 // Model URL
 let imageModelURL = './my_model/';
 
@@ -34,12 +36,6 @@ function draw() {
   //  image(img, 0, 0);
 
   image(flippedVideo, 0, 0);
-
-  // Draw the label
-  fill(255);
-  textSize(16);
-  textAlign(CENTER);
-  text(label, width / 2, height - 4);
 
   noStroke();
   fill(c);
@@ -78,23 +74,24 @@ function keyTyped() {
   );
 }
 
-// Get a prediction for the current video frame
-function classifyVideo() {
-  flippedVideo = ml5.flipImage(video)
+  // Get a prediction for the current video frame
+  function classifyVideo() {
+    flippedVideo = ml5.flipImage(video)
     classifier.classify(flippedVideo, gotResult);
-  flippedVideo.remove();
-}
+    flippedVideo.remove();
 
-// When we get a result
-function gotResult(error, results) {
-  // If there is an error
-  if (error) {
-    console.error(error);
-    return;
   }
-  // The results are in an array ordered by confidence.
-  // console.log(results[0]);
-  label = results[0].label;
-  // Classifiy again!
-  classifyVideo();
-}
+
+  // When we get a result
+  function gotResult(error, results) {
+    // If there is an error
+    if (error) {
+      console.error(error);
+      return;
+    }
+    // The results are in an array ordered by confidence.
+    // console.log(results[0]);
+    label = results[0].label;
+    // Classifiy again!
+    classifyVideo();
+  }
